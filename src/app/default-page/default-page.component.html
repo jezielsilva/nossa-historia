@@ -16,8 +16,20 @@
 </div>
 
 <div class="col-12 w-100 mt-3 mb-4" style="text-align: center;">
-  <h3>19/11/2022</h3>
-  <h5>{{ timeDifference.years }} anos, {{ timeDifference.months }} meses, {{ timeDifference.weeks }} semanas, {{ timeDifference.days }} dias, {{ timeDifference.hours }} horas, {{ timeDifference.minutes }} minutos e {{ timeDifference.seconds }} segundos</h5>
+  <div *ngIf="!isMobile">
+    <h3>19/11/2022</h3>
+    <h5>{{ timeDifference.years }} anos, {{ timeDifference.months }} meses, {{ timeDifference.weeks }} semanas, {{ timeDifference.days }} dias, {{ timeDifference.hours }} horas, {{ timeDifference.minutes }} minutos e {{ timeDifference.seconds }} segundos</h5>
+  </div>
+  <div *ngIf="isMobile">
+    <h3>19/11/2022</h3>
+    <h5>{{ timeDifference.years }} anos <br>
+    {{ timeDifference.months }} meses <br>
+    {{ timeDifference.weeks }} semanas <br>
+    {{ timeDifference.days }} dias <br>
+    {{ timeDifference.hours }} horas <br>
+    {{ timeDifference.minutes }} minutos <br>
+    {{ timeDifference.seconds }} segundos</h5>
+  </div>
   <img src="./assets/infinito.jpg" style="width: 50px;">
 </div>
 
