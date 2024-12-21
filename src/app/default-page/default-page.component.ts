@@ -18,15 +18,15 @@ export class DefaultPageComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    this.http.get<string[]>('/assets/assets-manifest.json').subscribe((data) => {
-      this.images = data.map(file => `assets/${file}`);
-      this.shuffleImages();  // Embaralha as imagens após carregá-las
-    });
+    // this.http.get<string[]>('/assets/assets-manifest.json').subscribe((data) => {
+    //   this.images = data.map(file => `assets/${file}`);
+    //   this.shuffleImages();  // Embaralha as imagens após carregá-las
+    // });
 
-    this.updateTime();
-    setInterval(() => {
-      this.updateTime();
-    }, 1000); // Atualiza a cada 1 segundo
+    // this.updateTime();
+    // setInterval(() => {
+    //   this.updateTime();
+    // }, 1000); // Atualiza a cada 1 segundo
   }
 
   shuffleImages(): void {
