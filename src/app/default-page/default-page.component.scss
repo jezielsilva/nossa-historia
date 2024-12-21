@@ -1,0 +1,54 @@
+#carouselExampleFade {
+  height: 65vh; /* Limita a altura a 50% da altura da janela */
+  overflow: hidden; /* Garante que nada ultrapasse os limites do carrossel */
+}
+
+.carousel-inner {
+  height: 100%; /* Garante que os itens do carrossel ocupem toda a altura do carrossel */
+}
+
+.carousel-item {
+  height: 100%; /* Garante que cada item do carrossel ocupe toda a altura */
+}
+
+.carousel-item img {
+  object-fit: contain; /* Ajusta a imagem sem cortá-la */
+  width: 100%; /* Garante que a largura seja 100% do carrossel */
+  height: 100%; /* Garante que a altura da imagem seja 100% */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: black; /* Define a cor de fundo das setas como preta */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  color: black; /* Garante que o botão de navegação tenha a cor preta */
+}
+
+.carousel-item-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(15px);
+  z-index: -1;
+  opacity: 0.5;
+}
+
+.counter {
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  text-align: center;
+  padding: 20px;
+}
+
+.counter p {
+  margin: 5px 0;
+  font-weight: bold;
+}
+
