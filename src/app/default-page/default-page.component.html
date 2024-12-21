@@ -1,8 +1,12 @@
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
   <div class="carousel-inner">
-    <div *ngFor="let img of images; let i = index" class="carousel-item" [class.active]="i === 0">
+    <!-- <div *ngFor="let img of images; let i = index" class="carousel-item" [class.active]="i === 0">
       <img [src]="img" class="d-block w-100" alt="...">
       <div class="carousel-item-bg" [ngStyle]="{'background-image': 'url(' + img + ')'}"></div>
+    </div> -->
+    <div class="carousel-item">
+      <img src="/src/assets/IMG-20220318-WA0005.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-item-bg"></div>
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -18,13 +22,13 @@
 <div class="col-12 w-100 mt-3 mb-4" style="text-align: center;">
   <h3>19/11/2022</h3>
   <h5>{{ timeDifference.years }} anos, {{ timeDifference.months }} meses, {{ timeDifference.weeks }} semanas, {{ timeDifference.days }} dias, {{ timeDifference.hours }} horas, {{ timeDifference.minutes }} minutos e {{ timeDifference.seconds }} segundos</h5>
-  <img src="../assets/infinito.jpg" style="width: 50px;">
+  <img src="/src/assets/infinito.jpg" style="width: 50px;">
 </div>
 
 <div class="card m-5" style="text-align: center;">
   <div class="card-body">
     <h4>Aguardando bebê</h4>
-    <img src="../assets/coracao-carregando.gif">
+    <img src="/src/assets/coracao-carregando.gif">
   </div>
 </div>
 
