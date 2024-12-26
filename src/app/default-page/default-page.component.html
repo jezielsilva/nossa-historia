@@ -1,43 +1,32 @@
-<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
-  <div class="carousel-inner">
-    <div *ngFor="let img of images; let i = index" class="carousel-item" [class.active]="i === 0">
-      <img [src]="img" class="d-block w-100" alt="...">
-      <div class="carousel-item-bg" [ngStyle]="{'background-image': 'url(' + img + ')'}"></div>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Nossa História</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Início</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" [routerLink]="'albuns'">Albúns</a>
+        </li>
+      </ul>
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+</nav>
 
-<div class="col-12 w-100 mt-3 mb-4" style="text-align: center;">
-  <div *ngIf="!isMobile">
-    <h3>19/11/2022</h3>
-    <h5>{{ timeDifference.years }} anos, {{ timeDifference.months }} meses, {{ timeDifference.weeks }} semanas, {{ timeDifference.days }} dias, {{ timeDifference.hours }} horas, {{ timeDifference.minutes }} minutos e {{ timeDifference.seconds }} segundos</h5>
-  </div>
-  <div *ngIf="isMobile">
-    <h3>19/11/2022</h3>
-    <h5>{{ timeDifference.years }} anos <br>
-    {{ timeDifference.months }} meses <br>
-    {{ timeDifference.weeks }} semanas <br>
-    {{ timeDifference.days }} dias <br>
-    {{ timeDifference.hours }} horas <br>
-    {{ timeDifference.minutes }} minutos <br>
-    {{ timeDifference.seconds }} segundos</h5>
-  </div>
-  <img src="./assets/infinito.jpg" style="width: 50px;">
-</div>
+<section class="Pagina">
+  <div class="header">
 
-<!-- <div class="card m-5" style="text-align: center;">
-  <div class="card-body">
-    <h4>Aguardando bebê</h4>
-    <img src="./assets/coracao-carregando.gif">
   </div>
-</div> -->
 
-<router-outlet></router-outlet>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+
+  <footer class="d-flex justify-content-center mt-5">
+    <p>© 2024  Jeziel Silva dos Santos. Todos os direitos reservados.</p>
+  </footer>
+</section>

@@ -1,0 +1,43 @@
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000">
+  <div class="carousel-inner">
+    <div *ngFor="let img of images; let i = index" class="carousel-item" [class.active]="i === 0">
+      <img [src]="img" class="d-block w-100" alt="...">
+      <div class="carousel-item-bg" [ngStyle]="{'background-image': 'url(' + img + ')'}"></div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<div class="col-12 w-100 mt-3 mb-4" style="text-align: center;">
+  <div *ngIf="!isMobile">
+    <h3>19/11/2022</h3>
+    <h5>{{ timeDifference.years }} anos, {{ timeDifference.months }} meses, {{ timeDifference.weeks }} semanas, {{ timeDifference.days }} dias, {{ timeDifference.hours }} horas, {{ timeDifference.minutes }} minutos e {{ timeDifference.seconds }} segundos</h5>
+  </div>
+  <div *ngIf="isMobile">
+    <h3>19/11/2022</h3>
+    <h5>{{ timeDifference.years }} anos <br>
+    {{ timeDifference.months }} meses <br>
+    {{ timeDifference.weeks }} semanas <br>
+    {{ timeDifference.days }} dias <br>
+    {{ timeDifference.hours }} horas <br>
+    {{ timeDifference.minutes }} minutos <br>
+    {{ timeDifference.seconds }} segundos</h5>
+  </div>
+  <img src="./icones/infinito.jpg" style="width: 50px;">
+</div>
+
+<!-- <div class="card m-5" style="text-align: center;">
+  <div class="card-body">
+    <h4>Aguardando bebê</h4>
+    <img src="./icones/coracao-carregando.gif">
+  </div>
+</div> -->
+
+<router-outlet></router-outlet>

@@ -1,0 +1,11 @@
+<div class="gallery">
+  <div *ngFor="let image of images" class="thumbnail" (click)="openModal(image)">
+    <img [src]="'assets/' + image" alt="Foto">
+  </div>
+</div>
+
+<div *ngIf="selectedImage" class="modal" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <img [src]="'assets/' + selectedImage" alt="Imagem grande" (click)="closeModal()"/>
+  </div>
+</div>
