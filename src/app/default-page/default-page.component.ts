@@ -21,8 +21,8 @@ export class DefaultPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get<string[]>('./assets/assets-manifest.json').subscribe((data) => {
-      this.images = data.map(file => `assets/${file}`);
+    this.http.get<string[]>('./assets/assets-general-manifest.json').subscribe((data) => {
+      this.images = data.map(file => file);
       this.shuffleImages();  // Embaralha as imagens após carregá-las
     });
 

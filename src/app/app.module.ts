@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DefaultPageComponent } from './default-page/default-page.component';
 import { AlbunsComponent } from './albuns/albuns.component';
 import { HomeComponent } from './home/home.component';
+import { FotosComponent } from './fotos/fotos.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { HomeComponent } from './home/home.component';
     AppComponent,
     DefaultPageComponent,
     AlbunsComponent,
-    HomeComponent
+    HomeComponent,
+    FotosComponent
   ],
   imports: [
     BrowserModule,

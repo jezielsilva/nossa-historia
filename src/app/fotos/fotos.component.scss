@@ -59,39 +59,3 @@
   margin-top: 10px;
 }
 
-.albums {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-.album {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  padding: 20px;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  transition: transform 0.3s;
-}
-
-.album:hover {
-  transform: scale(1.1); /* Efeito de zoom quando o usuário passa o mouse sobre o álbum */
-}
-
-.album-icon {
-  font-size: 40px; /* Tamanho do ícone */
-  color: #4CAF50; /* Cor do ícone (verde, por exemplo) */
-  margin-bottom: 10px; /* Espaço entre o ícone e o nome */
-}
-
-.album-name {
-  font-size: 18px;
-  text-align: center;
-  color: #333;
-  margin: 0;
-}
-
-

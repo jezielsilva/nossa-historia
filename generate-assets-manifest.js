@@ -2,44 +2,40 @@ const fs = require('fs');
 const path = require('path');
 
 const assetsDir = path.join(__dirname, 'src/assets');
-const manifestPath = path.join(__dirname, 'src/assets/assets-manifest.json');
+const manifestPath = path.join(__dirname, 'src/assets/assets-general-manifest.json');
 
-function getAllFiles(dir, fileList = [], subfolderManifests = {}) {
+function getAllFilesAndFolders(dir, fileList = [], folderList = []) {
   const files = fs.readdirSync(dir);
   files.forEach((file) => {
     const filePath = path.join(dir, file);
     if (fs.statSync(filePath).isDirectory()) {
-      // Se for um diretório, chamamos a função recursivamente
-      const subfolder = path.relative(assetsDir, filePath);
-      subfolderManifests[subfolder] = subfolderManifests[subfolder] || [];
-      getAllFiles(filePath, fileList, subfolderManifests);
-    } else if (/\.(jpg|jpeg|png|gif|svg)$/.test(file)) {
-      // Se for um arquivo de imagem, adicionamos à lista
-      const relativePath = path.relative(assetsDir, filePath);
-      fileList.push(relativePath);
+      // Adiciona o nome da subpasta à lista de pastas
+      const relativeFolderPath = path.relative(assetsDir, filePath).replace(/\\/g, '/');
+      folderList.push(relativeFolderPath);
 
-      // Adiciona ao manifesto da subpasta, se aplicável
-      const subfolder = path.relative(assetsDir, path.dirname(filePath));
-      subfolderManifests[subfolder] = subfolderManifests[subfolder] || [];
-      subfolderManifests[subfolder].push(relativePath);
+      // Recursivamente processa as subpastas
+      getAllFilesAndFolders(filePath, fileList, folderList);
+    } else if (/\.(jpg|jpeg|png|gif|svg)$/i.test(file)) {
+      // Adiciona apenas arquivos de imagem
+      const relativeFilePath = path.relative(assetsDir, filePath).replace(/\\/g, '/');
+      fileList.push(relativeFilePath);
     }
   });
-  return { fileList, subfolderManifests };
+  return { fileList, folderList };
 }
 
 try {
-  const { fileList, subfolderManifests } = getAllFiles(assetsDir);
+  const { fileList, folderList } = getAllFilesAndFolders(assetsDir);
 
-  // Salvar arquivo geral com todas as imagens
-  fs.writeFileSync(manifestPath, JSON.stringify(fileList, null, 2));
-  console.log('Assets manifest (geral) generated:', manifestPath);
+  // Cria o manifesto geral com fotos e subpastas
+  const generalManifest = {
+    allImages: fileList,
+    subfolders: folderList,
+  };
 
-  // Salvar um arquivo separado para cada subpasta
-  Object.keys(subfolderManifests).forEach((subfolder) => {
-    const subfolderManifestPath = path.join(assetsDir, `${subfolder.replace(/[\/\\]/g, '-')}-manifest.json`);
-    fs.writeFileSync(subfolderManifestPath, JSON.stringify(subfolderManifests[subfolder], null, 2));
-    console.log('Subfolder manifest generated:', subfolderManifestPath);
-  });
+  // Salva o manifesto geral
+  fs.writeFileSync(manifestPath, JSON.stringify(generalManifest, null, 2));
+  console.log('Manifesto geral gerado com sucesso:', manifestPath);
 } catch (err) {
-  console.error('Error processing assets directory:', err);
+  console.error('Erro ao gerar o manifesto geral:', err);
 }

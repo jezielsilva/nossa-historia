@@ -1,11 +1,11 @@
-<div class="gallery">
-  <div *ngFor="let image of images" class="thumbnail" (click)="openModal(image)">
-    <img [src]="'assets/' + image" alt="Foto">
-  </div>
-</div>
-
-<div *ngIf="selectedImage" class="modal" (click)="closeModal()">
-  <div class="modal-content" (click)="$event.stopPropagation()">
-    <img [src]="'assets/' + selectedImage" alt="Imagem grande" (click)="closeModal()"/>
+<div class="albums mt-5">
+  <!-- Lista de Álbuns -->
+  <div *ngFor="let album of albums" class="album" (click)="loadAlbum(album)">
+    <!-- Ícone de pasta (Font Awesome) -->
+    <div class="album-icon">
+      <i class="fa fa-folder"></i>
+    </div>
+    <!-- Nome do Álbum -->
+    <h3 class="album-name">{{ album }}</h3>
   </div>
 </div>

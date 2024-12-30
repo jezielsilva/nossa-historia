@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit{
     currentTime: Date = new Date();  // Data atual
     timeDifference: any = {};
     isMobile = false;
+    isSpecialDay = false;
 
     constructor(
       private http: HttpClient
@@ -20,15 +21,25 @@ export class HomeComponent implements OnInit{
     }
 
     ngOnInit(): void {
-      this.http.get<string[]>('./assets/assets-manifest.json').subscribe((data) => {
-        this.images = data.map(file => `assets/${file}`);
-        this.shuffleImages();  // Embaralha as imagens após carregá-las
-      });
+      this.checkSpecialDay();
+      this.http.get<{ allImages: string[]; subfolders: string[] }>('assets/assets-general-manifest.json').subscribe((data) => {
+      this.images = data.allImages.map(file => `assets/${file}`);
+      this.shuffleImages();
+    });
 
       this.updateTime();
       setInterval(() => {
         this.updateTime();
       }, 1000); // Atualiza a cada 1 segundo
+    }
+
+    checkSpecialDay() {
+      const today = new Date();
+      const specialDay = new Date(today.getFullYear(), 10, 19); // 10 representa novembro (meses começam do 0)
+
+      if (today.getDate() === specialDay.getDate() && today.getMonth() === specialDay.getMonth()) {
+        this.isSpecialDay = true;
+      }
     }
 
     shuffleImages(): void {
