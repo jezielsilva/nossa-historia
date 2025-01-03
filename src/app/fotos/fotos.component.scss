@@ -38,7 +38,6 @@
   align-items: center;
   z-index: 1000;
   overflow: hidden; /* Impede rolagem */
-  background: rgba(0, 0, 0, 0.8); /* Fundo semitransparente */
 }
 
 /* Imagem na modal */
@@ -53,7 +52,7 @@
 }
 
 .modal-content img {
-  max-width: 50%;  /* A imagem não ultrapassa a largura da tela */
+  max-width: 30%;  /* A imagem não ultrapassa a largura da tela */
   max-height: 100%; /* A imagem não ultrapassa a altura da tela */
   object-fit: contain; /* Garante que a imagem se ajuste proporcionalmente */
   display: block;   /* Para garantir o alinhamento correto */
@@ -65,7 +64,6 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: rgba(255, 255, 255, 0.7);
   border: none;
   font-size: 18px;
   cursor: pointer;
