@@ -31,31 +31,62 @@
   top: 50%; /* Centraliza verticalmente */
   left: 50%; /* Centraliza horizontalmente */
   transform: translate(-50%, -50%); /* Move o elemento para o centro exato */
-  width: 70%; /* A modal ocupará toda a largura da tela */
-  height: 70%; /* A modal ocupará toda a altura da tela */
-  background: rgba(0, 0, 0, 0.8);
+  width: 90%; /* Ajuste para maior flexibilidade no tamanho da tela */
+  height: 90%; /* Ajuste para maior flexibilidade no tamanho da tela */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
   overflow: hidden; /* Impede rolagem */
+  background: rgba(0, 0, 0, 0.8); /* Fundo semitransparente */
 }
 
+/* Imagem na modal */
 .modal-content {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
 }
 
-.modal img {
-  max-width: 90%; /* A imagem vai ocupar no máximo 90% da largura da modal */
-  max-height: 90%; /* A imagem vai ocupar no máximo 90% da altura da modal */
-  object-fit: contain; /* A imagem será ajustada proporcionalmente */
+.modal-content img {
+  max-width: 100%;  /* A imagem não ultrapassa a largura da tela */
+  max-height: 100%; /* A imagem não ultrapassa a altura da tela */
+  object-fit: contain; /* Garante que a imagem se ajuste proporcionalmente */
+  display: block;   /* Para garantir o alinhamento correto */
+  margin: 0 auto;   /* Alinha a imagem ao centro */
 }
 
+/* Botão de fechar */
 .close-btn {
-  padding: 10px 20px;
-  border-radius: 4px;
-  margin-top: 10px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 1100; /* Garante que o botão esteja acima da imagem */
+  color: black;
+}
+
+.close-btn:hover {
+  background-color: rgba(255, 255, 255, 1); /* Efeito de hover */
+}
+
+/* Para melhorar a experiência em dispositivos móveis */
+@media (max-width: 768px) {
+  .modal {
+    width: 95%; /* Modal ocupa 95% da largura na tela pequena */
+    height: 95%; /* Modal ocupa 95% da altura na tela pequena */
+  }
+
+  .close-btn {
+    font-size: 16px;
+    padding: 8px 12px;
+  }
 }
 

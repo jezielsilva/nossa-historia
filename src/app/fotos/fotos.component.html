@@ -5,8 +5,9 @@
   </div>
 </div>
 
-<div *ngIf="selectedImage" class="modal" (click)="closeModal()">
+<div *ngIf="isModalOpen" class="modal" (click)="closeModal()">
   <div class="modal-content" (click)="$event.stopPropagation()">
-    <img [src]="'assets/' + selectedImage" alt="Imagem grande" (click)="closeModal()"/>
+    <img [src]="'assets/' + selectedImage" alt="Imagem grande" class="img-fluid" (click)="closeModal()"/>
+    <button class="btn btn-secondary close-btn" (click)="closeModal()">Fechar</button>
   </div>
 </div>

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+//import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-fotos',
@@ -12,10 +13,12 @@ export class FotosComponent implements OnInit {
   images: string[] = [];
   selectedImage: string | null = null;
   album: any;
+  isModalOpen = false;
 
   constructor(
     private http: HttpClient,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    //private modalService: NgbModal
   ){}
 
   ngOnInit(): void {
@@ -26,11 +29,14 @@ export class FotosComponent implements OnInit {
   }
 
   openModal(image: string): void {
-    this.selectedImage = image;
+    this.selectedImage = image;  // Define a imagem selecionada
+    this.isModalOpen = true;  // Abre a modal
   }
 
+  // Método para fechar a modal
   closeModal(): void {
-    this.selectedImage = null;
+    this.isModalOpen = false;  // Fecha a modal
+    this.selectedImage = null;  // Reseta a imagem selecionada
   }
 
 }

@@ -9,7 +9,6 @@ import { AlbunsComponent } from './albuns/albuns.component';
 import { HomeComponent } from './home/home.component';
 import { FotosComponent } from './fotos/fotos.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

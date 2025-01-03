@@ -7,6 +7,12 @@ function getAllFilesByFolder(dir, subfolderManifests = {}) {
   const files = fs.readdirSync(dir);
   files.forEach((file) => {
     const filePath = path.join(dir, file);
+
+    // Ignora pastas chamadas 'geral'
+    if (fs.statSync(filePath).isDirectory() && file.toLowerCase() === 'geral') {
+      return; // Não faz nada se for a pasta 'geral'
+    }
+
     if (fs.statSync(filePath).isDirectory()) {
       // Se for um diretório, chama recursivamente
       const subfolder = path.relative(assetsDir, filePath).replace(/\\/g, '/'); // Corrige as barras
@@ -28,6 +34,11 @@ try {
 
   // Salva cada manifesto de subpasta em um arquivo separado
   Object.keys(subfolderManifests).forEach((subfolder) => {
+    // Ignora a criação de manifestos para a pasta 'geral'
+    if (subfolder.toLowerCase() === 'geral') {
+      return; // Não gera manifesto para a pasta 'geral'
+    }
+
     // Extrai o último nome da subpasta para o nome do arquivo
     const folderName = subfolder.split('/').pop(); // Última parte do caminho
     const subfolderManifestPath = path.join(assetsDir, `${folderName}-manifest.json`);

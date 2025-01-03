@@ -8,8 +8,14 @@ function getAllFilesAndFolders(dir, fileList = [], folderList = []) {
   const files = fs.readdirSync(dir);
   files.forEach((file) => {
     const filePath = path.join(dir, file);
+
+    // Ignora pastas chamadas 'geral'
+    if (fs.statSync(filePath).isDirectory() && file.toLowerCase() === 'geral') {
+      return; // Não processa pastas chamadas 'geral'
+    }
+
     if (fs.statSync(filePath).isDirectory()) {
-      // Adiciona o nome da subpasta à lista de pastas
+      // Adiciona o nome da subpasta à lista de pastas, exceto se for 'geral'
       const relativeFolderPath = path.relative(assetsDir, filePath).replace(/\\/g, '/');
       folderList.push(relativeFolderPath);
 
