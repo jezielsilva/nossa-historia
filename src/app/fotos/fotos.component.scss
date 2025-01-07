@@ -26,33 +26,8 @@
   border-color: #007BFF;
 }
 
-.modal {
-  position: fixed;
-  top: 50%; /* Centraliza verticalmente */
-  left: 50%; /* Centraliza horizontalmente */
-  transform: translate(-50%, -50%); /* Move o elemento para o centro exato */
-  width: 90%; /* Ajuste para maior flexibilidade no tamanho da tela */
-  height: 90%; /* Ajuste para maior flexibilidade no tamanho da tela */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  overflow: hidden; /* Impede rolagem */
-}
-
-/* Imagem na modal */
-.modal-content {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 100%;
-  max-height: 100%;
-  overflow: hidden;
-}
-
 .modal-content img {
-  max-width: 30%;  /* A imagem não ultrapassa a largura da tela */
+  max-width: 100%;  /* A imagem não ultrapassa a largura da tela */
   max-height: 100%; /* A imagem não ultrapassa a altura da tela */
   object-fit: contain; /* Garante que a imagem se ajuste proporcionalmente */
   display: block;   /* Para garantir o alinhamento correto */
@@ -75,16 +50,6 @@
   background-color: rgba(255, 255, 255, 1); /* Efeito de hover */
 }
 
-/* Para melhorar a experiência em dispositivos móveis */
-@media (max-width: 768px) {
-  .modal {
-    width: 95%; /* Modal ocupa 95% da largura na tela pequena */
-    height: 95%; /* Modal ocupa 95% da altura na tela pequena */
-  }
 
-  .close-btn {
-    font-size: 16px;
-    padding: 8px 12px;
-  }
-}
+
 

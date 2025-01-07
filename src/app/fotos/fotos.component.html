@@ -1,13 +1,22 @@
 <div *ngIf="images.length > 0" class="gallery">
   <!-- Galeria de Imagens do Álbum Selecionado -->
-  <div *ngFor="let image of images" class="thumbnail" (click)="openModal(image)">
-    <img [src]="'assets/' + image" alt="Imagem do Álbum">
+  <div *ngFor="let image of images" class="thumbnail" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openModal(image)">
+    <img [src]="'assets/' + image" alt="Imagem do Álbum" loading="lazy">
   </div>
 </div>
 
-<div *ngIf="isModalOpen" class="modal" (click)="closeModal()">
-  <div class="modal-content" (click)="$event.stopPropagation()">
-    <img [src]="'assets/' + selectedImage" alt="Imagem grande" class="img-fluid" (click)="closeModal()"/>
-    <button class="btn btn-secondary close-btn" (click)="closeModal()">Fechar</button>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img [src]="'assets/' + selectedImage" alt="Imagem grande" class="img-fluid"/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
   </div>
 </div>

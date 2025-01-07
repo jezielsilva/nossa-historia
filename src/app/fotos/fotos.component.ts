@@ -13,7 +13,6 @@ export class FotosComponent implements OnInit {
   images: string[] = [];
   selectedImage: string | null = null;
   album: any;
-  isModalOpen = false;
 
   constructor(
     private http: HttpClient,
@@ -30,13 +29,6 @@ export class FotosComponent implements OnInit {
 
   openModal(image: string): void {
     this.selectedImage = image;  // Define a imagem selecionada
-    this.isModalOpen = true;  // Abre a modal
-  }
-
-  // Método para fechar a modal
-  closeModal(): void {
-    this.isModalOpen = false;  // Fecha a modal
-    this.selectedImage = null;  // Reseta a imagem selecionada
   }
 
 }
