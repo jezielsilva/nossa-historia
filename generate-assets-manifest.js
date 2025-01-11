@@ -21,7 +21,7 @@ function getAllFilesAndFolders(dir, fileList = [], folderList = []) {
 
       // Recursivamente processa as subpastas
       getAllFilesAndFolders(filePath, fileList, folderList);
-    } else if (/\.(jpg|jpeg|png|gif|svg)$/i.test(file)) {
+    } else if (/\.(jpg|jpeg|png|gif|svg|webp)$/i.test(file)) {
       // Adiciona apenas arquivos de imagem
       const relativeFilePath = path.relative(assetsDir, filePath).replace(/\\/g, '/');
       fileList.push(relativeFilePath);
@@ -30,18 +30,55 @@ function getAllFilesAndFolders(dir, fileList = [], folderList = []) {
   return { fileList, folderList };
 }
 
+function updateManifest(fileList, folderList) {
+  // Tenta ler o arquivo manifesto existente
+  let currentManifest = { allImages: [], subfolders: [] };
+
+  if (fs.existsSync(manifestPath)) {
+    try {
+      currentManifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+    } catch (err) {
+      console.error('Erro ao ler o manifesto existente:', err);
+    }
+  }
+
+  // Verifica se houve alterações nas imagens ou pastas
+  const imagesChanged = !arraysAreEqual(currentManifest.allImages, fileList);
+  const foldersChanged = !arraysAreEqual(currentManifest.subfolders, folderList);
+
+  if (imagesChanged || foldersChanged) {
+    // Se houve alterações, atualiza o manifesto
+    const generalManifest = {
+      allImages: fileList,
+      subfolders: folderList,
+    };
+
+    try {
+      fs.writeFileSync(manifestPath, JSON.stringify(generalManifest, null, 2));
+      console.log('Manifesto geral atualizado com sucesso:', manifestPath);
+    } catch (err) {
+      console.error('Erro ao atualizar o manifesto geral:', err);
+    }
+  } else {
+    console.log('Nenhuma alteração detectada. O manifesto não foi alterado.');
+  }
+}
+
+// Função para comparar se dois arrays são iguais
+function arraysAreEqual(arr1, arr2) {
+  if (arr1.length !== arr2.length) return false;
+
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== arr2[i]) return false;
+  }
+  return true;
+}
+
 try {
   const { fileList, folderList } = getAllFilesAndFolders(assetsDir);
 
-  // Cria o manifesto geral com fotos e subpastas
-  const generalManifest = {
-    allImages: fileList,
-    subfolders: folderList,
-  };
-
-  // Salva o manifesto geral
-  fs.writeFileSync(manifestPath, JSON.stringify(generalManifest, null, 2));
-  console.log('Manifesto geral gerado com sucesso:', manifestPath);
+  // Atualiza o manifesto apenas se necessário
+  updateManifest(fileList, folderList);
 } catch (err) {
-  console.error('Erro ao gerar o manifesto geral:', err);
+  console.error('Erro ao processar as imagens e pastas:', err);
 }
