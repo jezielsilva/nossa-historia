@@ -52,3 +52,18 @@
   font-weight: bold;
 }
 
+#fireworks {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999; /* Para ficar acima de tudo */
+  pointer-events: none; /* Para que não bloqueie cliques em outros elementos */
+}
+
+#fireworks img {
+  display: block;
+  height: auto;
+}
+
+

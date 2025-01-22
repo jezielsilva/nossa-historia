@@ -35,11 +35,22 @@ export class HomeComponent implements OnInit{
 
     checkSpecialDay() {
       const today = new Date();
-      const specialDay = new Date(today.getFullYear(), 10, 19); // 10 representa novembro (meses começam do 0)
+      const specialDay = new Date(today.getFullYear(), today.getMonth(), 19);
+      console.log(specialDay)
 
       if (today.getDate() === specialDay.getDate() && today.getMonth() === specialDay.getMonth()) {
         this.isSpecialDay = true;
       }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const fireworks = document.getElementById("fireworks");
+
+        if (fireworks) {
+          setTimeout(() => {
+            fireworks.style.display = "none"; // Esconde o elemento
+          }, 5000); // Ajuste para a duração real do GIF
+        }
+      });
     }
 
     shuffleImages(): void {
